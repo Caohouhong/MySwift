@@ -13,9 +13,13 @@ class HHNavigationController: UINavigationController {
     override class func initialize() {
         super.initialize()
         let navBar = UINavigationBar.appearance()
-        navBar.barTintColor = UIColor.whiteColor()
+        navBar.barTintColor = UIColor ( red: 0.6173, green: 1.0, blue: 0.996, alpha: 1.0 )
+        //设置左右bar的颜色
         navBar.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
-        navBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(17)]
+        
+        //设置title的属性，字体，颜色
+        navBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(17),NSForegroundColorAttributeName: UIColor.blackColor()]
+        
     }
     
     override func viewDidLoad() {
@@ -31,17 +35,21 @@ class HHNavigationController: UINavigationController {
     
     override func pushViewController(viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
+            //push时隐藏tabbar
             viewController.hidesBottomBarWhenPushed = true
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "lefterbackicon_titlebar_28x28_"), style: .Plain, target: self, action: #selector(navigationBack))
+//
+            //左侧返回按钮（带上一层的title）
+            viewController.navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigation_left_back"), style: .Plain, target: self, action: #selector(navigationBack))
+
+            //左侧返回按钮 （frame有点问题）
+//            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image:    UIImage(named: "navigation_left_back"), style: .Plain, target: self, action: #selector(navigationBack))
         }
         super.pushViewController(viewController, animated: true)
     }
     
-    func navigationBack() {
-        popViewControllerAnimated(true)
+    func navigationBack(){
     }
-
-
+    
     /*
     // MARK: - Navigation
 

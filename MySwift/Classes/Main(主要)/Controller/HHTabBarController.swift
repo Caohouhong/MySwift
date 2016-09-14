@@ -33,10 +33,10 @@ class HHTabBarController: UITabBarController {
      # 添加子控制器
      */
     private func addChildViewControllers() {
-        addChildViewController(ViewController(), title: "首页", imageName: "home_tabbar_normal_22x22_", selectedImageName: "home_tabbar_press_22x22_")
-        addChildViewController(ViewController(), title: "视频", imageName: "video_tabbar_normal_22x22_", selectedImageName: "video_tabbar_press_22x22_")
-        addChildViewController(ViewController(), title: "关注", imageName: "newcare_tabbar_normal_22x22_", selectedImageName: "newcare_tabbar_press_22x22_")
-        addChildViewController(ViewController(), title: "我的", imageName: "mine_tabbar_normal_22x22_", selectedImageName: "mine_tabbar_press_22x22_")
+        addChildViewController(HomeViewController(), title: "首页", imageName: "home_tabbar_normal_22x22_", selectedImageName: "home_tabbar_press_22x22_")
+        addChildViewController(VideoViewController(), title: "视频", imageName: "video_tabbar_normal_22x22_", selectedImageName: "video_tabbar_press_22x22_")
+        addChildViewController(LoginViewController(), title: "关注", imageName: "newcare_tabbar_normal_22x22_", selectedImageName: "newcare_tabbar_press_22x22_")
+        addChildViewController(MineViewController(), title: "我的", imageName: "mine_tabbar_normal_22x22_", selectedImageName: "mine_tabbar_press_22x22_")
     }
 
     
