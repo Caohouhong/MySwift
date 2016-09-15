@@ -8,18 +8,16 @@
 
 import UIKit
 
-class HHShareView: UIView {
+class HHShareView: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var viewWidth: CGFloat!
-    var viewHeight: CGFloat!
     var oneWidth: CGFloat!
+    var cellDataDic = [["image":"wechat_72x72","text":"微信"],["image":"wechat_72x72","text":"朋友圈"], ["image":"wechat_72x72","text":"QQ"], ["image":"wechat_72x72","text":"QQ空间"], ["image":"wechat_72x72","text":"新浪微博"], ["image":"wechat_72x72","text":"其他"]]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         viewWidth = self.frame.size.width
-        viewHeight = self.frame.size.height
-        oneWidth = viewWidth/8.0
-        
+        oneWidth = viewWidth/4.0
         setUI()
     }
     
@@ -29,7 +27,7 @@ class HHShareView: UIView {
     
     func setUI(){
         
-        let height = oneWidth + 20*UIRate
+        let height = 40*UIRate
         
         let shareHoldView = UIView(frame:self.frame)
         shareHoldView.backgroundColor = UIColor.whiteColor()
@@ -41,35 +39,65 @@ class HHShareView: UIView {
         shareLabel.textAlignment = .Center
         shareHoldView.addSubview(shareLabel)
         
-        let wechatBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        wechatBut.center = CGPointMake(oneWidth, height)
-        wechatBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(wechatBut)
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        layout.itemSize = CGSizeMake(oneWidth, oneWidth)
         
-        let friendsBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        friendsBut.center = CGPointMake(oneWidth * 3.0, height)
-        friendsBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(friendsBut)
+        let collectionView = UICollectionView(frame: CGRectMake(0, height, viewWidth, oneWidth*2.0), collectionViewLayout: layout)
+        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "shareCell")
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = UIColor.whiteColor()
         
-        let QQBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        QQBut.center = CGPointMake(oneWidth * 5.0, height )
-        QQBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(QQBut)
+        shareHoldView.addSubview(collectionView)
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let QQRomeBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        QQRomeBut.center = CGPointMake(oneWidth * 7.0, height)
-        QQRomeBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(QQRomeBut)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("shareCell", forIndexPath: indexPath)
         
-        let sinaBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        sinaBut.center = CGPointMake(oneWidth, oneWidth * 3.0 + 20*UIRate)
-        sinaBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(sinaBut)
+        let imageView = UIImageView(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
+        imageView.center = cell.contentView.center
+        imageView.image = UIImage(named: cellDataDic[indexPath.row]["image"]!)
+        cell.contentView.addSubview(imageView)
         
-        let otherBut = UIButton(frame: CGRectMake(0, 0, 36*UIRate, 36*UIRate))
-        otherBut.center = CGPointMake(oneWidth * 3.0, oneWidth * 3.0 + 20*UIRate)
-        otherBut.setImage(UIImage(named: "wechat_72x72"), forState: .Normal)
-        shareHoldView.addSubview(otherBut)
+        let textLabel = UILabel(frame: CGRectMake(0, cell.contentView.frame.height - 30*UIRate, oneWidth, 30*UIRate))
+        textLabel.text = cellDataDic[indexPath.row]["text"]!
+        textLabel.font = UIFontSize(13*UIRate)
+        textLabel.textAlignment = .Center
+        cell.contentView.addSubview(textLabel)
+        
+        cell.backgroundColor = UIColor.whiteColor()
+        return cell
         
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.row {
+        case 0:
+            
+            break
+        case 1:
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            break
+        case 5:
+            break
+        case 6:
+            break
+        default:
+            break
+        }
+    }
+    
 }
+

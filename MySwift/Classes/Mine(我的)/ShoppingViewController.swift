@@ -33,14 +33,12 @@ class ShoppingViewController: BaseViewController {
     override func doRightNavigationBarTextBtnAction() {
         
         let shareView = HHShareView(frame: CGRectMake(0, 0, SCREEN_WIDTH - 30*UIRate, 300*UIRate))
-        
         self.popupView = CNPPopupController(contents:[shareView])
         self.popupView.theme.presentationStyle = .SlideInFromTop
         self.popupView.theme.dismissesOppositeDirection = true
         self.popupView.presentPopupControllerAnimated(true)
         
     }
-    
-    
-    
 }
+    
+

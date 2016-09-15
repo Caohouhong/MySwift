@@ -173,7 +173,6 @@ class CyclePictureView: UIView, UIScrollViewDelegate {
     
     // MARK: - Action:点击图片跳转
     func tapTheImage(){
-        
         delegate?.cyclePictureSkipToSomeLink(curPage)
     }
 }
